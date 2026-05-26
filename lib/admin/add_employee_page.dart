@@ -10,26 +10,39 @@ class AddEmployeePage extends StatefulWidget {
 
 class _AddEmployeePageState
     extends State<AddEmployeePage> {
+
   bool isHidden = true;
 
   final nameController = TextEditingController();
-  final emailController = TextEditingController();
+
+  final emailController =
+      TextEditingController();
+
   final passwordController =
       TextEditingController(
     text: "secretpassword123",
   );
-  final jobController = TextEditingController();
+
+  final jobController =
+      TextEditingController();
 
   String selectedRole = "Employee";
-  String selectedDivision = "Engineering";
+
+  String selectedDivision =
+      "Engineering";
 
   @override
   Widget build(BuildContext context) {
+
     bool isMobile =
-        MediaQuery.of(context).size.width < 768;
+        MediaQuery.of(context)
+                .size
+                .width <
+            768;
 
     return Scaffold(
-      backgroundColor: const Color(0xffFFF8F7),
+      backgroundColor:
+          const Color(0xffFFF8F7),
 
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -39,13 +52,15 @@ class _AddEmployeePageState
           "AttendancePro",
           style: TextStyle(
             color: Color(0xff6A020A),
-            fontWeight: FontWeight.bold,
+            fontWeight:
+                FontWeight.bold,
           ),
         ),
       ),
 
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding:
+            const EdgeInsets.all(16),
 
         child: Center(
           child: ConstrainedBox(
@@ -57,26 +72,37 @@ class _AddEmployeePageState
             child: isMobile
                 ? Column(
                     children: [
+
                       profileCard(),
-                      const SizedBox(height: 20),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
                       formSection(),
                     ],
                   )
                 : Row(
                     crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        CrossAxisAlignment
+                            .start,
 
                     children: [
+
                       Expanded(
                         flex: 1,
-                        child: profileCard(),
+                        child:
+                            profileCard(),
                       ),
 
-                      const SizedBox(width: 24),
+                      const SizedBox(
+                        width: 24,
+                      ),
 
                       Expanded(
                         flex: 2,
-                        child: formSection(),
+                        child:
+                            formSection(),
                       ),
                     ],
                   ),
@@ -87,8 +113,10 @@ class _AddEmployeePageState
   }
 
   Widget profileCard() {
+
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding:
+          const EdgeInsets.all(24),
 
       decoration: BoxDecoration(
         color: Colors.white,
@@ -97,9 +125,11 @@ class _AddEmployeePageState
             BorderRadius.circular(20),
 
         boxShadow: [
+
           BoxShadow(
-            color:
-                Colors.black.withOpacity(0.05),
+            color: Colors.black
+                .withOpacity(0.05),
+
             blurRadius: 10,
           ),
         ],
@@ -107,8 +137,10 @@ class _AddEmployeePageState
 
       child: Column(
         children: [
+
           Stack(
             children: [
+
               const CircleAvatar(
                 radius: 70,
 
@@ -125,8 +157,11 @@ class _AddEmployeePageState
                 child: Container(
                   decoration:
                       const BoxDecoration(
-                    color: Color(0xff4C56AF),
-                    shape: BoxShape.circle,
+                    color:
+                        Color(0xff4C56AF),
+
+                    shape:
+                        BoxShape.circle,
                   ),
 
                   child: IconButton(
@@ -134,7 +169,8 @@ class _AddEmployeePageState
 
                     icon: const Icon(
                       Icons.camera_alt,
-                      color: Colors.white,
+                      color:
+                          Colors.white,
                     ),
                   ),
                 ),
@@ -147,7 +183,8 @@ class _AddEmployeePageState
           const Text(
             "Profile Photo",
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontWeight:
+                  FontWeight.bold,
             ),
           ),
 
@@ -155,7 +192,8 @@ class _AddEmployeePageState
 
           const Text(
             "Upload JPG or PNG",
-            textAlign: TextAlign.center,
+            textAlign:
+                TextAlign.center,
 
             style: TextStyle(
               color: Colors.black54,
@@ -167,11 +205,13 @@ class _AddEmployeePageState
   }
 
   Widget formSection() {
+
     return Column(
       children: [
-        /// PERSONAL CARD
+
         Container(
-          padding: const EdgeInsets.all(24),
+          padding:
+              const EdgeInsets.all(24),
 
           decoration: BoxDecoration(
             color: Colors.white,
@@ -180,11 +220,11 @@ class _AddEmployeePageState
                 BorderRadius.circular(20),
 
             boxShadow: [
+
               BoxShadow(
-                color:
-                    Colors.black.withOpacity(
-                  0.05,
-                ),
+                color: Colors.black
+                    .withOpacity(0.05),
+
                 blurRadius: 10,
               ),
             ],
@@ -192,14 +232,17 @@ class _AddEmployeePageState
 
           child: Column(
             crossAxisAlignment:
-                CrossAxisAlignment.start,
+                CrossAxisAlignment
+                    .start,
 
             children: [
+
               const Text(
                 "Personal Identity",
                 style: TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontWeight:
+                      FontWeight.bold,
                 ),
               ),
 
@@ -224,7 +267,8 @@ class _AddEmployeePageState
               const Text(
                 "Temporary Password",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight:
+                      FontWeight.bold,
                 ),
               ),
 
@@ -236,7 +280,9 @@ class _AddEmployeePageState
 
                 obscureText: isHidden,
 
-                decoration: InputDecoration(
+                decoration:
+                    InputDecoration(
+
                   border:
                       OutlineInputBorder(
                     borderRadius:
@@ -245,221 +291,130 @@ class _AddEmployeePageState
                     ),
                   ),
 
-                  suffixIcon: IconButton(
+                  suffixIcon:
+                      IconButton(
                     onPressed: () {
+
                       setState(() {
-                        isHidden = !isHidden;
+
+                        isHidden =
+                            !isHidden;
                       });
                     },
 
                     icon: Icon(
                       isHidden
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons
+                              .visibility
+                          : Icons
+                              .visibility_off,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              SizedBox(
+                width: double.infinity,
+
+                child: ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(
+                    backgroundColor:
+                        const Color(
+                            0xff6A020A),
+
+                    padding:
+                        const EdgeInsets.symmetric(
+                      vertical: 18,
+                    ),
+
+                    shape:
+                        RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(
+                        14,
+                      ),
+                    ),
+                  ),
+
+                  onPressed: () {
+
+                    if (nameController
+                            .text
+                            .isEmpty ||
+                        emailController
+                            .text
+                            .isEmpty ||
+                        jobController
+                            .text
+                            .isEmpty) {
+
+                      ScaffoldMessenger.of(
+                              context)
+                          .showSnackBar(
+
+                        const SnackBar(
+                          content: Text(
+                            "Semua data wajib diisi",
+                          ),
+                        ),
+                      );
+
+                      return;
+                    }
+
+                    Map<String, dynamic>
+                        newAdmin = {
+
+                      "name":
+                          nameController
+                              .text,
+
+                      "email":
+                          emailController
+                              .text,
+
+                      "role":
+                          selectedRole
+                              .toUpperCase(),
+
+                      "isActive":
+                          true,
+                    };
+
+                    ScaffoldMessenger.of(
+                            context)
+                        .showSnackBar(
+
+                      const SnackBar(
+                        content: Text(
+                          "Admin berhasil ditambahkan",
+                        ),
+                      ),
+                    );
+
+                    Navigator.pop(
+                      context,
+                      newAdmin,
+                    );
+                  },
+
+                  child: const Text(
+                    "Save Employee Profile",
+
+                    style: TextStyle(
+                      color:
+                          Colors.white,
+
+                      fontWeight:
+                          FontWeight.bold,
                     ),
                   ),
                 ),
               ),
             ],
-          ),
-        ),
-
-        const SizedBox(height: 24),
-
-        /// EMPLOYMENT CARD
-        Container(
-          padding: const EdgeInsets.all(24),
-
-          decoration: BoxDecoration(
-            color: Colors.white,
-
-            borderRadius:
-                BorderRadius.circular(20),
-
-            boxShadow: [
-              BoxShadow(
-                color:
-                    Colors.black.withOpacity(
-                  0.05,
-                ),
-                blurRadius: 10,
-              ),
-            ],
-          ),
-
-          child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
-
-            children: [
-              const Text(
-                "Employment Details",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              const Text(
-                "System Role",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              DropdownButtonFormField<String>(
-                value: selectedRole,
-
-                items: const [
-                  DropdownMenuItem(
-                    value: "Employee",
-                    child: Text("Employee"),
-                  ),
-
-                  DropdownMenuItem(
-                    value: "Admin",
-                    child: Text("Admin"),
-                  ),
-
-                  DropdownMenuItem(
-                    value: "Manager",
-                    child: Text("Manager"),
-                  ),
-                ],
-
-                onChanged: (value) {
-                  setState(() {
-                    selectedRole = value!;
-                  });
-                },
-
-                decoration: InputDecoration(
-                  border:
-                      OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(
-                      14,
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              buildField(
-                "Job Title",
-                "Senior Software Engineer",
-                jobController,
-              ),
-
-              const SizedBox(height: 20),
-
-              const Text(
-                "Division / Department",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              DropdownButtonFormField<String>(
-                value: selectedDivision,
-
-                items: const [
-                  DropdownMenuItem(
-                    value: "Engineering",
-                    child: Text(
-                      "Engineering",
-                    ),
-                  ),
-
-                  DropdownMenuItem(
-                    value: "HR",
-                    child: Text("HR"),
-                  ),
-
-                  DropdownMenuItem(
-                    value: "Marketing",
-                    child: Text(
-                      "Marketing",
-                    ),
-                  ),
-
-                  DropdownMenuItem(
-                    value: "Finance",
-                    child: Text("Finance"),
-                  ),
-                ],
-
-                onChanged: (value) {
-                  setState(() {
-                    selectedDivision = value!;
-                  });
-                },
-
-                decoration: InputDecoration(
-                  border:
-                      OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(
-                      14,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        const SizedBox(height: 30),
-
-        /// BUTTON
-        SizedBox(
-          width: double.infinity,
-
-          child: ElevatedButton(
-            style:
-                ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color(0xff6A020A),
-
-              padding:
-                  const EdgeInsets.symmetric(
-                vertical: 18,
-              ),
-
-              shape:
-                  RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(14),
-              ),
-            ),
-
-            onPressed: () {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    "Employee berhasil ditambahkan",
-                  ),
-                ),
-              );
-
-              Navigator.pop(context);
-            },
-
-            child: const Text(
-              "Save Employee Profile",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
           ),
         ),
       ],
@@ -471,16 +426,19 @@ class _AddEmployeePageState
     String hint,
     TextEditingController controller,
   ) {
+
     return Column(
       crossAxisAlignment:
           CrossAxisAlignment.start,
 
       children: [
+
         Text(
           label,
 
           style: const TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight:
+                FontWeight.bold,
           ),
         ),
 
@@ -492,9 +450,12 @@ class _AddEmployeePageState
           decoration: InputDecoration(
             hintText: hint,
 
-            border: OutlineInputBorder(
+            border:
+                OutlineInputBorder(
               borderRadius:
-                  BorderRadius.circular(14),
+                  BorderRadius.circular(
+                14,
+              ),
             ),
           ),
         ),

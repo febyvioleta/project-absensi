@@ -1,21 +1,51 @@
 import 'package:flutter/material.dart';
 import 'dashboard_admin.dart';
 import 'add_employee_page.dart';
+import 'attendance_history_page.dart';
+import 'detail_admin_page.dart';
 
-class DaftarAdmin extends StatelessWidget {
+class DaftarAdmin extends StatefulWidget {
   const DaftarAdmin({super.key});
+
+  @override
+  State<DaftarAdmin> createState() => _DaftarAdminState();
+}
+
+class _DaftarAdminState extends State<DaftarAdmin> {
+  List<Map<String, dynamic>> adminList = [
+    {
+      "name": "Feby Violeta",
+      "email": "feby@gmail.com",
+      "role": "SUPER ADMIN",
+      "isActive": true,
+    },
+    {
+      "name": "Rahman",
+      "email": "rahman@gmail.com",
+      "role": "HR ADMIN",
+      "isActive": true,
+    },
+    {
+      "name": "Aldi",
+      "email": "aldi@gmail.com",
+      "role": "OPERATOR",
+      "isActive": false,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
 
-      /// DRAWER MOBILE
+      /// ================= DRAWER =================
       drawer: Drawer(
         child: Container(
           color: const Color(0xff4C56AF),
+
           child: ListView(
             padding: const EdgeInsets.all(20),
+
             children: [
               const SizedBox(height: 40),
 
@@ -56,15 +86,23 @@ class DaftarAdmin extends StatelessWidget {
                 const DaftarAdmin(),
                 isActive: true,
               ),
+
+              sidebarItem(
+                context,
+                Icons.history,
+                "Data Absensi",
+                const AttendanceHistoryPage(),
+              ),
             ],
           ),
         ),
       ),
 
-      /// APPBAR
+      /// ================= APPBAR =================
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
+
         title: const Text(
           "AttendancePro",
           style: TextStyle(
@@ -72,12 +110,13 @@ class DaftarAdmin extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+
         iconTheme: const IconThemeData(
           color: Color(0xff6A020A),
         ),
       ),
 
-      /// BODY
+      /// ================= BODY =================
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -87,6 +126,7 @@ class DaftarAdmin extends StatelessWidget {
             if (isMobile) {
               return ListView(
                 padding: const EdgeInsets.all(16),
+
                 children: [
                   const Text(
                     "Daftar Admin",
@@ -102,28 +142,42 @@ class DaftarAdmin extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
+
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color(0xff8B0000),
+                        backgroundColor: const Color(0xff8B0000),
+
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
+
+                      onPressed: () async {
+                        final result = await Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
                                 const AddEmployeePage(),
                           ),
                         );
+
+                        if (result != null) {
+                          setState(() {
+                            adminList.add({
+                              "name": result["name"],
+                              "email": result["email"],
+                              "role": result["role"],
+                              "isActive": true,
+                            });
+                          });
+                        }
                       },
+
                       icon: const Icon(
                         Icons.person_add,
                         color: Colors.white,
                       ),
+
                       label: const Text(
                         "Tambah Admin",
                         style: TextStyle(
@@ -139,14 +193,15 @@ class DaftarAdmin extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       hintText: "Cari nama admin...",
-                      prefixIcon:
-                          const Icon(Icons.search),
+
+                      prefixIcon: const Icon(Icons.search),
+
                       filled: true,
-                      fillColor:
-                          const Color(0xffF8F8F8),
+
+                      fillColor: const Color(0xffF8F8F8),
+
                       border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
                       ),
                     ),
@@ -154,29 +209,15 @@ class DaftarAdmin extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  adminCard(
-                    context,
-                    "Feby Violeta",
-                    "feby@gmail.com",
-                    "SUPER ADMIN",
-                    true,
-                  ),
-
-                  adminCard(
-                    context,
-                    "Rahman",
-                    "rahman@gmail.com",
-                    "HR ADMIN",
-                    true,
-                  ),
-
-                  adminCard(
-                    context,
-                    "Aldi",
-                    "aldi@gmail.com",
-                    "OPERATOR",
-                    false,
-                  ),
+                  ...adminList.map((admin) {
+                    return adminCard(
+                      context,
+                      admin["name"],
+                      admin["email"],
+                      admin["role"],
+                      admin["isActive"],
+                    );
+                  }).toList(),
                 ],
               );
             }
@@ -184,10 +225,11 @@ class DaftarAdmin extends StatelessWidget {
             /// ================= DESKTOP =================
             return Row(
               children: [
-                /// SIDEBAR
+                /// ================= SIDEBAR =================
                 Container(
                   width: 250,
                   color: const Color(0xff4C56AF),
+
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
@@ -197,8 +239,7 @@ class DaftarAdmin extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 26,
-                          fontWeight:
-                              FontWeight.bold,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
 
@@ -219,58 +260,75 @@ class DaftarAdmin extends StatelessWidget {
                         isActive: true,
                       ),
 
+                      sidebarItem(
+                        context,
+                        Icons.history,
+                        "Data Absensi",
+                        const AttendanceHistoryPage(),
+                      ),
+
                       const Spacer(),
                     ],
                   ),
                 ),
 
-                /// MAIN CONTENT
+                /// ================= CONTENT =================
                 Expanded(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(24),
+
                     child: Column(
                       crossAxisAlignment:
                           CrossAxisAlignment.start,
+
                       children: [
                         Row(
                           mainAxisAlignment:
-                              MainAxisAlignment
-                                  .spaceBetween,
+                              MainAxisAlignment.spaceBetween,
+
                           children: [
                             const Text(
                               "Daftar Admin",
                               style: TextStyle(
                                 fontSize: 34,
-                                fontWeight:
-                                    FontWeight.bold,
-                                color:
-                                    Color(0xff6A020A),
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff6A020A),
                               ),
                             ),
 
                             ElevatedButton.icon(
-                              style:
-                                  ElevatedButton
-                                      .styleFrom(
+                              style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    const Color(
-                                        0xff8B0000),
+                                    const Color(0xff8B0000),
                               ),
-                              onPressed: () {
-                                Navigator.push(
+
+                              onPressed: () async {
+                                final result =
+                                    await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder:
-                                        (context) =>
-                                            const AddEmployeePage(),
+                                    builder: (context) =>
+                                        const AddEmployeePage(),
                                   ),
                                 );
+
+                                if (result != null) {
+                                  setState(() {
+                                    adminList.add({
+                                      "name": result["name"],
+                                      "email": result["email"],
+                                      "role": result["role"],
+                                      "isActive": true,
+                                    });
+                                  });
+                                }
                               },
+
                               icon: const Icon(
                                 Icons.person_add,
                                 color: Colors.white,
                               ),
+
                               label: const Text(
                                 "Tambah Admin",
                                 style: TextStyle(
@@ -285,21 +343,18 @@ class DaftarAdmin extends StatelessWidget {
 
                         TextField(
                           decoration: InputDecoration(
-                            hintText:
-                                "Cari nama admin...",
-                            prefixIcon:
-                                const Icon(
-                              Icons.search,
-                            ),
+                            hintText: "Cari nama admin...",
+
+                            prefixIcon: const Icon(Icons.search),
+
                             filled: true,
                             fillColor: Colors.white,
-                            border:
-                                OutlineInputBorder(
+
+                            border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius
-                                      .circular(12),
-                              borderSide:
-                                  BorderSide.none,
+                                  BorderRadius.circular(12),
+
+                              borderSide: BorderSide.none,
                             ),
                           ),
                         ),
@@ -308,31 +363,16 @@ class DaftarAdmin extends StatelessWidget {
 
                         Expanded(
                           child: ListView(
-                            children: [
-                              adminDesktopItem(
+                            children:
+                                adminList.map((admin) {
+                              return adminDesktopItem(
                                 context,
-                                "Feby Violeta",
-                                "feby@gmail.com",
-                                "SUPER ADMIN",
-                                true,
-                              ),
-
-                              adminDesktopItem(
-                                context,
-                                "Rahman",
-                                "rahman@gmail.com",
-                                "HR ADMIN",
-                                true,
-                              ),
-
-                              adminDesktopItem(
-                                context,
-                                "Aldi",
-                                "aldi@gmail.com",
-                                "OPERATOR",
-                                false,
-                              ),
-                            ],
+                                admin["name"],
+                                admin["email"],
+                                admin["role"],
+                                admin["isActive"],
+                              );
+                            }).toList(),
                           ),
                         ),
                       ],
@@ -347,7 +387,7 @@ class DaftarAdmin extends StatelessWidget {
     );
   }
 
-  /// SIDEBAR ITEM
+  /// ================= SIDEBAR =================
   static Widget sidebarItem(
     BuildContext context,
     IconData icon,
@@ -355,25 +395,39 @@ class DaftarAdmin extends StatelessWidget {
     Widget page, {
     bool isActive = false,
   }) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: Colors.white,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+
+      decoration: BoxDecoration(
+        color: isActive
+            ? Colors.white.withOpacity(0.2)
+            : Colors.transparent,
+
+        borderRadius: BorderRadius.circular(12),
       ),
-      title: Text(
-        title,
-        style: const TextStyle(
+
+      child: ListTile(
+        leading: Icon(
+          icon,
           color: Colors.white,
         ),
-      ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => page,
+
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
           ),
-        );
-      },
+        ),
+
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => page,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -387,6 +441,7 @@ class DaftarAdmin extends StatelessWidget {
   ) {
     return InkWell(
       borderRadius: BorderRadius.circular(18),
+
       onTap: () {
         Navigator.push(
           context,
@@ -400,21 +455,24 @@ class DaftarAdmin extends StatelessWidget {
           ),
         );
       },
+
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
+
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-              BorderRadius.circular(18),
+
+          borderRadius: BorderRadius.circular(18),
+
           boxShadow: [
             BoxShadow(
-              color:
-                  Colors.black.withOpacity(0.05),
+              color: Colors.black.withOpacity(0.05),
               blurRadius: 8,
             ),
           ],
         ),
+
         child: Row(
           children: [
             const CircleAvatar(
@@ -430,12 +488,12 @@ class DaftarAdmin extends StatelessWidget {
               child: Column(
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
+
                 children: [
                   Text(
                     name,
                     style: const TextStyle(
-                      fontWeight:
-                          FontWeight.bold,
+                      fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
@@ -463,7 +521,7 @@ class DaftarAdmin extends StatelessWidget {
     );
   }
 
-  /// ================= DESKTOP ITEM =================
+  /// ================= DESKTOP CARD =================
   static Widget adminDesktopItem(
     BuildContext context,
     String name,
@@ -473,6 +531,7 @@ class DaftarAdmin extends StatelessWidget {
   ) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
+
       onTap: () {
         Navigator.push(
           context,
@@ -486,24 +545,27 @@ class DaftarAdmin extends StatelessWidget {
           ),
         );
       },
+
       child: Card(
         elevation: 2,
         margin: const EdgeInsets.only(bottom: 16),
+
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16),
         ),
+
         child: Padding(
           padding: const EdgeInsets.all(20),
+
           child: Row(
             children: [
               Expanded(
                 flex: 3,
+
                 child: Row(
                   children: [
                     const CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(
+                      backgroundImage: NetworkImage(
                         "https://i.pravatar.cc/150",
                       ),
                     ),
@@ -513,8 +575,7 @@ class DaftarAdmin extends StatelessWidget {
                     Text(
                       name,
                       style: const TextStyle(
-                        fontWeight:
-                            FontWeight.bold,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -528,6 +589,7 @@ class DaftarAdmin extends StatelessWidget {
 
               Expanded(
                 flex: 2,
+
                 child: Chip(
                   label: Text(role),
                 ),
@@ -535,6 +597,7 @@ class DaftarAdmin extends StatelessWidget {
 
               Expanded(
                 flex: 2,
+
                 child: Chip(
                   label: Text(
                     isActive
@@ -549,6 +612,7 @@ class DaftarAdmin extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {},
+
                       icon: const Icon(
                         Icons.edit,
                         color: Colors.blue,
@@ -557,6 +621,7 @@ class DaftarAdmin extends StatelessWidget {
 
                     IconButton(
                       onPressed: () {},
+
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.red,
@@ -567,77 +632,6 @@ class DaftarAdmin extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-/// ================= DETAIL ADMIN PAGE =================
-class DetailAdminPage extends StatelessWidget {
-  final String name;
-  final String email;
-  final String role;
-  final bool isActive;
-
-  const DetailAdminPage({
-    super.key,
-    required this.name,
-    required this.email,
-    required this.role,
-    required this.isActive,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Detail Admin"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                "https://i.pravatar.cc/150",
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            Text(email),
-
-            const SizedBox(height: 20),
-
-            Chip(
-              label: Text(role),
-            ),
-
-            const SizedBox(height: 10),
-
-            Chip(
-              backgroundColor: isActive
-                  ? Colors.green.shade100
-                  : Colors.red.shade100,
-              label: Text(
-                isActive
-                    ? "ACTIVE"
-                    : "INACTIVE",
-              ),
-            ),
-          ],
         ),
       ),
     );
