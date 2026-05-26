@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'karyawan/dashboard_karyawan.dart';
+﻿import 'package:flutter/material.dart';
+
+import 'karyawan/navigation_karyawan.dart';
 import 'admin/dashboard_admin.dart';
 
 void main() {
@@ -11,7 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginPage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const LoginPage(),
+    );
   }
 }
 
@@ -29,13 +33,60 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+ void login() {
+  final email = emailController.text.trim();
+  final password = passwordController.text.trim();
+
+  /// LOGIN ADMIN
+  if (email == "adminamertaasa@media.com" &&
+      password == "123456") {
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            const AdminDashboard(),
+      ),
+    );
+  }
+
+  /// LOGIN KARYAWAN
+  else if (
+      email ==
+          "karyawanamertaasa@media.com" &&
+      password == "123456") {
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            const NavigationKaryawan(),
+      ),
+    );
+  }
+
+  /// LOGIN GAGAL
+  else {
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          "Email atau Password salah!",
+        ),
+      ),
+    );
+  }
+}
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color(0xffFFF8F7),
 
       body: Stack(
         children: [
+
           /// BACKGROUND CIRCLE
           Positioned(
             top: -100,
@@ -81,13 +132,14 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 15,
                         offset: const Offset(0, 4),
-                      ),
+                      )
                     ],
                   ),
 
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+
                       /// LOGO
                       Container(
                         width: 120,
@@ -119,7 +171,10 @@ class _LoginPageState extends State<LoginPage> {
                       const Text(
                         "Silakan masuk ke akun AttendancePro Anda",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black54, fontSize: 14),
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14,
+                        ),
                       ),
 
                       const SizedBox(height: 35),
@@ -147,7 +202,8 @@ class _LoginPageState extends State<LoginPage> {
                           prefixIcon: const Icon(Icons.person),
 
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
+                            borderRadius:
+                                BorderRadius.circular(14),
                           ),
                         ),
                       ),
@@ -175,7 +231,8 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: InputDecoration(
                           hintText: "••••••••",
 
-                          prefixIcon: const Icon(Icons.lock),
+                          prefixIcon:
+                              const Icon(Icons.lock),
 
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -192,7 +249,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
 
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
+                            borderRadius:
+                                BorderRadius.circular(14),
                           ),
                         ),
                       ),
@@ -201,11 +259,14 @@ class _LoginPageState extends State<LoginPage> {
 
                       /// REMEMBER + FORGOT
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
 
                         children: [
+
                           Row(
                             children: [
+
                               Checkbox(
                                 value: rememberMe,
                                 onChanged: (value) {
@@ -220,19 +281,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
 
                           TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DashboardKaryawan(),
-                                ),
-                              );
-                            },
+                            onPressed: () {},
 
                             child: const Text(
                               "LUPA KATA SANDI?",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -247,51 +302,23 @@ class _LoginPageState extends State<LoginPage> {
 
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff6A020A),
+                            backgroundColor:
+                                const Color(0xff6A020A),
 
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius:
+                                  BorderRadius.circular(16),
                             ),
                           ),
 
-                          onPressed: () {
-                            /// LOGIN ADMIN
-                            if (emailController.text ==
-                                    "adminamertasa@media.com" &&
-                                passwordController.text == "123456") {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const AdminDashboard(),
-                                ),
-                              );
-                            }
-                            /// LOGIN KARYAWAN
-                            else if (emailController.text ==
-                                    "karyawanamertasa@media.com" &&
-                                passwordController.text == "123456") {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DashboardKaryawan(),
-                                ),
-                              );
-                            }
-                            /// LOGIN GAGAL
-                            else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Email atau password salah"),
-                                ),
-                              );
-                            }
-                          },
+                          onPressed: login,
 
                           child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment:
+                                MainAxisAlignment.center,
 
                             children: [
+
                               Text(
                                 "Masuk Sekarang",
                                 style: TextStyle(
@@ -303,7 +330,10 @@ class _LoginPageState extends State<LoginPage> {
 
                               SizedBox(width: 10),
 
-                              Icon(Icons.login, color: Colors.white),
+                              Icon(
+                                Icons.login,
+                                color: Colors.white,
+                              )
                             ],
                           ),
                         ),
@@ -318,7 +348,9 @@ class _LoginPageState extends State<LoginPage> {
                       const Text(
                         "Butuh bantuan akses? Hubungi IT Support",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black54),
+                        style: TextStyle(
+                          color: Colors.black54,
+                        ),
                       ),
                     ],
                   ),
