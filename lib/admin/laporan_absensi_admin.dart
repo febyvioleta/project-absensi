@@ -10,7 +10,6 @@ class ReportsPage extends StatelessWidget {
 
       body: Row(
         children: [
-
           /// SIDEBAR
           Container(
             width: 280,
@@ -18,7 +17,6 @@ class ReportsPage extends StatelessWidget {
 
             child: Column(
               children: [
-
                 const SizedBox(height: 40),
 
                 const Padding(
@@ -26,7 +24,6 @@ class ReportsPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Text(
                         "Admin Portal",
                         style: TextStyle(
@@ -40,10 +37,7 @@ class ReportsPage extends StatelessWidget {
 
                       Text(
                         "Workforce Management",
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 13,
-                        ),
+                        style: TextStyle(color: Colors.white70, fontSize: 13),
                       ),
                     ],
                   ),
@@ -56,8 +50,7 @@ class ReportsPage extends StatelessWidget {
                 sidebarItem(Icons.event_available, "Attendance"),
                 sidebarItem(Icons.map, "Maps"),
                 sidebarItem(Icons.pending_actions, "Leave Requests"),
-                sidebarItem(Icons.assessment, "Reports",
-                    active: true),
+                sidebarItem(Icons.assessment, "Reports", active: true),
                 sidebarItem(Icons.settings, "Settings"),
 
                 const Spacer(),
@@ -67,7 +60,6 @@ class ReportsPage extends StatelessWidget {
 
                   child: Row(
                     children: [
-
                       const CircleAvatar(
                         radius: 22,
                         backgroundImage: NetworkImage(
@@ -78,11 +70,9 @@ class ReportsPage extends StatelessWidget {
                       const SizedBox(width: 12),
 
                       Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: const [
-
                           Text(
                             "Alex Rivera",
                             style: TextStyle(
@@ -111,29 +101,22 @@ class ReportsPage extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-
                 /// TOP BAR
                 Container(
                   height: 70,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
 
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     border: Border(
-                      bottom: BorderSide(
-                        color: Color(0xffDFBFBC),
-                      ),
+                      bottom: BorderSide(color: Color(0xffDFBFBC)),
                     ),
                   ),
 
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                     children: [
-
                       const Text(
                         "AttendancePro",
                         style: TextStyle(
@@ -145,7 +128,6 @@ class ReportsPage extends StatelessWidget {
 
                       Row(
                         children: [
-
                           searchBox(),
 
                           const SizedBox(width: 16),
@@ -177,32 +159,24 @@ class ReportsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(24),
 
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
-
                         /// HEADER
                         Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                           children: [
-
                             Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
 
                               children: const [
-
                                 Text(
                                   "Monthly Attendance Analytics",
                                   style: TextStyle(
                                     fontSize: 32,
-                                    fontWeight:
-                                        FontWeight.bold,
-                                    color:
-                                        Color(0xff251917),
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff251917),
                                   ),
                                 ),
 
@@ -210,16 +184,13 @@ class ReportsPage extends StatelessWidget {
 
                                 Text(
                                   "Reviewing performance for October 2023",
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                  ),
+                                  style: TextStyle(color: Colors.black54),
                                 ),
                               ],
                             ),
 
                             Row(
                               children: [
-
                                 actionButton(
                                   "Export PDF",
                                   Icons.picture_as_pdf,
@@ -243,13 +214,11 @@ class ReportsPage extends StatelessWidget {
                         /// SUMMARY CARDS
                         Row(
                           children: [
-
                             Expanded(
                               child: summaryCard(
                                 title: "Total Presence",
                                 value: "1,248",
-                                subtitle:
-                                    "Avg. 156 per day",
+                                subtitle: "Avg. 156 per day",
                                 icon: Icons.person,
                                 color: Colors.green,
                               ),
@@ -261,8 +230,7 @@ class ReportsPage extends StatelessWidget {
                               child: summaryCard(
                                 title: "Total Late",
                                 value: "42",
-                                subtitle:
-                                    "Mostly Morning shift",
+                                subtitle: "Mostly Morning shift",
                                 icon: Icons.schedule,
                                 color: Colors.orange,
                               ),
@@ -274,8 +242,7 @@ class ReportsPage extends StatelessWidget {
                               child: summaryCard(
                                 title: "Total Absent",
                                 value: "18",
-                                subtitle:
-                                    "8 Approved leaves",
+                                subtitle: "8 Approved leaves",
                                 icon: Icons.person_off,
                                 color: Colors.red,
                               ),
@@ -285,34 +252,22 @@ class ReportsPage extends StatelessWidget {
 
                             Expanded(
                               child: Container(
-                                padding:
-                                    const EdgeInsets.all(20),
+                                padding: const EdgeInsets.all(20),
 
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xff6A020A),
-                                  borderRadius:
-                                      BorderRadius
-                                          .circular(20),
+                                  color: const Color(0xff6A020A),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
 
                                 child: const Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
-
-                                   
-
                                     SizedBox(height: 20),
 
                                     Text(
                                       "Attendance Rate",
-                                      style: TextStyle(
-                                        color:
-                                            Colors.white70,
-                                      ),
+                                      style: TextStyle(color: Colors.white70),
                                     ),
 
                                     SizedBox(height: 8),
@@ -322,8 +277,7 @@ class ReportsPage extends StatelessWidget {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 32,
-                                        fontWeight:
-                                            FontWeight.bold,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
@@ -337,80 +291,58 @@ class ReportsPage extends StatelessWidget {
 
                         /// CHART + DEPARTMENT
                         Row(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-
                             /// CHART
                             Expanded(
                               flex: 2,
 
                               child: Container(
                                 height: 350,
-                                padding:
-                                    const EdgeInsets.all(24),
+                                padding: const EdgeInsets.all(24),
 
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius
-                                          .circular(20),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
 
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
-
                                     const Text(
                                       "Daily Attendance Trends",
                                       style: TextStyle(
                                         fontSize: 22,
-                                        fontWeight:
-                                            FontWeight.bold,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
 
-                                    const SizedBox(
-                                        height: 30),
+                                    const SizedBox(height: 30),
 
                                     Expanded(
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment
-                                                .end,
+                                            CrossAxisAlignment.end,
 
                                         mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
 
                                         children: [
+                                          chartBar("MON", 0.65),
 
-                                          chartBar(
-                                              "MON", 0.65),
+                                          chartBar("TUE", 0.85),
 
-                                          chartBar(
-                                              "TUE", 0.85),
+                                          chartBar("WED", 0.95, active: true),
 
-                                          chartBar(
-                                              "WED", 0.95,
-                                              active:
-                                                  true),
+                                          chartBar("THU", 0.75),
 
-                                          chartBar(
-                                              "THU", 0.75),
+                                          chartBar("FRI", 0.80),
 
-                                          chartBar(
-                                              "FRI", 0.80),
+                                          chartBar("SAT", 0.25),
 
-                                          chartBar(
-                                              "SAT", 0.25),
-
-                                          chartBar(
-                                              "SUN", 0.15),
+                                          chartBar("SUN", 0.15),
                                         ],
                                       ),
                                     ),
@@ -424,46 +356,32 @@ class ReportsPage extends StatelessWidget {
                             /// DEPARTMENT
                             Expanded(
                               child: Container(
-                                padding:
-                                    const EdgeInsets.all(24),
+                                padding: const EdgeInsets.all(24),
 
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius
-                                          .circular(20),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
 
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
 
                                   children: [
-
                                     const Text(
                                       "Attendance by Dept.",
                                       style: TextStyle(
                                         fontSize: 22,
-                                        fontWeight:
-                                            FontWeight.bold,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
 
-                                    const SizedBox(
-                                        height: 24),
+                                    const SizedBox(height: 24),
 
-                                    deptItem(
-                                        "Operations",
-                                        0.98),
+                                    deptItem("Operations", 0.98),
 
-                                    deptItem(
-                                        "Marketing",
-                                        0.94),
+                                    deptItem("Marketing", 0.94),
 
-                                    deptItem(
-                                        "HR & Admin",
-                                        0.88),
+                                    deptItem("HR & Admin", 0.88),
 
                                     deptItem("R&D", 0.97),
                                   ],
@@ -481,22 +399,18 @@ class ReportsPage extends StatelessWidget {
 
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius:
-                                BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20),
                           ),
 
                           child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
 
                             children: [
-
                               const Text(
                                 "Detailed Monthly Log",
                                 style: TextStyle(
                                   fontSize: 24,
-                                  fontWeight:
-                                      FontWeight.bold,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
 
@@ -504,68 +418,52 @@ class ReportsPage extends StatelessWidget {
 
                               DataTable(
                                 columns: const [
+                                  DataColumn(label: Text("Employee")),
 
-                                  DataColumn(
-                                      label:
-                                          Text("Employee")),
+                                  DataColumn(label: Text("Department")),
 
-                                  DataColumn(
-                                      label:
-                                          Text("Department")),
+                                  DataColumn(label: Text("Presence")),
 
-                                  DataColumn(
-                                      label:
-                                          Text("Presence")),
+                                  DataColumn(label: Text("Late")),
 
-                                  DataColumn(
-                                      label: Text("Late")),
+                                  DataColumn(label: Text("Leave")),
 
-                                  DataColumn(
-                                      label: Text("Leave")),
-
-                                  DataColumn(
-                                      label: Text("Rate")),
+                                  DataColumn(label: Text("Rate")),
                                 ],
 
                                 rows: const [
+                                  DataRow(
+                                    cells: [
+                                      DataCell(Text("John Doe")),
+                                      DataCell(Text("Operations")),
+                                      DataCell(Text("22 Days")),
+                                      DataCell(Text("0")),
+                                      DataCell(Text("0")),
+                                      DataCell(Text("100%")),
+                                    ],
+                                  ),
 
-                                  DataRow(cells: [
-                                    DataCell(
-                                        Text("John Doe")),
-                                    DataCell(
-                                        Text("Operations")),
-                                    DataCell(
-                                        Text("22 Days")),
-                                    DataCell(Text("0")),
-                                    DataCell(Text("0")),
-                                    DataCell(Text("100%")),
-                                  ]),
+                                  DataRow(
+                                    cells: [
+                                      DataCell(Text("Sarah Miller")),
+                                      DataCell(Text("Marketing")),
+                                      DataCell(Text("19 Days")),
+                                      DataCell(Text("3")),
+                                      DataCell(Text("0")),
+                                      DataCell(Text("86.4%")),
+                                    ],
+                                  ),
 
-                                  DataRow(cells: [
-                                    DataCell(Text(
-                                        "Sarah Miller")),
-                                    DataCell(
-                                        Text("Marketing")),
-                                    DataCell(
-                                        Text("19 Days")),
-                                    DataCell(Text("3")),
-                                    DataCell(Text("0")),
-                                    DataCell(
-                                        Text("86.4%")),
-                                  ]),
-
-                                  DataRow(cells: [
-                                    DataCell(Text(
-                                        "Robert King")),
-                                    DataCell(Text(
-                                        "Engineering")),
-                                    DataCell(
-                                        Text("17 Days")),
-                                    DataCell(Text("0")),
-                                    DataCell(Text("5")),
-                                    DataCell(
-                                        Text("77.3%")),
-                                  ]),
+                                  DataRow(
+                                    cells: [
+                                      DataCell(Text("Robert King")),
+                                      DataCell(Text("Engineering")),
+                                      DataCell(Text("17 Days")),
+                                      DataCell(Text("0")),
+                                      DataCell(Text("5")),
+                                      DataCell(Text("77.3%")),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
@@ -592,19 +490,13 @@ class ReportsPage extends StatelessWidget {
 
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(
-          color: const Color(0xffDFBFBC),
-        ),
+        border: Border.all(color: const Color(0xffDFBFBC)),
         borderRadius: BorderRadius.circular(30),
       ),
 
       child: const Row(
         children: [
-
-          Icon(
-            Icons.search,
-            color: Colors.black54,
-          ),
+          Icon(Icons.search, color: Colors.black54),
 
           SizedBox(width: 10),
 
@@ -628,25 +520,17 @@ class ReportsPage extends StatelessWidget {
     bool active = false,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 4,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
 
       child: Container(
         decoration: BoxDecoration(
-          color: active
-              ? const Color(0xff959EFD)
-              : Colors.transparent,
+          color: active ? const Color(0xff959EFD) : Colors.transparent,
 
           borderRadius: BorderRadius.circular(14),
         ),
 
         child: ListTile(
-          leading: Icon(
-            icon,
-            color: Colors.white,
-          ),
+          leading: Icon(icon, color: Colors.white),
 
           title: Text(
             title,
@@ -663,30 +547,18 @@ class ReportsPage extends StatelessWidget {
   }
 
   /// ACTION BUTTON
-  static Widget actionButton(
-    String title,
-    IconData icon,
-    Color color,
-  ) {
+  static Widget actionButton(String title, IconData icon, Color color) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 18,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
 
       onPressed: () {},
 
-      icon: Icon(
-        icon,
-        color: Colors.white,
-      ),
+      icon: Icon(icon, color: Colors.white),
 
       label: Text(
         title,
@@ -715,72 +587,46 @@ class ReportsPage extends StatelessWidget {
       ),
 
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-
           CircleAvatar(
-            backgroundColor:
-                color.withValues(alpha: 0.15),
+            backgroundColor: color.withValues(alpha: 0.15),
 
-            child: Icon(
-              icon,
-              color: color,
-            ),
+            child: Icon(icon, color: color),
           ),
 
           const SizedBox(height: 20),
 
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.black54,
-            ),
-          ),
+          Text(title, style: const TextStyle(color: Colors.black54)),
 
           const SizedBox(height: 8),
 
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
 
           const SizedBox(height: 6),
 
-          Text(
-            subtitle,
-            style: const TextStyle(
-              color: Colors.black54,
-            ),
-          ),
+          Text(subtitle, style: const TextStyle(color: Colors.black54)),
         ],
       ),
     );
   }
 
   /// BAR CHART
-  static Widget chartBar(
-    String day,
-    double height, {
-    bool active = false,
-  }) {
+  static Widget chartBar(String day, double height, {bool active = false}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
 
       children: [
-
         Container(
           width: 40,
           height: 220 * height,
 
           decoration: BoxDecoration(
-            color: active
-                ? const Color(0xff6A020A)
-                : const Color(0xff959EFD),
+            color: active ? const Color(0xff6A020A) : const Color(0xff959EFD),
 
             borderRadius: BorderRadius.circular(12),
           ),
@@ -794,35 +640,21 @@ class ReportsPage extends StatelessWidget {
   }
 
   /// DEPARTMENT ITEM
-  static Widget deptItem(
-    String title,
-    double value,
-  ) {
+  static Widget deptItem(String title, double value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
 
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-
           Row(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
             children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
 
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              Text(
-                "${(value * 100).toInt()}%",
-              ),
+              Text("${(value * 100).toInt()}%"),
             ],
           ),
 
@@ -831,16 +663,11 @@ class ReportsPage extends StatelessWidget {
           LinearProgressIndicator(
             value: value,
             minHeight: 8,
-            borderRadius:
-                BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10),
 
-            backgroundColor:
-                const Color(0xffEEE5E4),
+            backgroundColor: const Color(0xffEEE5E4),
 
-            valueColor:
-                const AlwaysStoppedAnimation(
-              Color(0xff4C56AF),
-            ),
+            valueColor: const AlwaysStoppedAnimation(Color(0xff4C56AF)),
           ),
         ],
       ),

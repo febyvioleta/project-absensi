@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'daftar_admin.dart';
-
+import 'monitoring_maps_admin.dart';
+import 'approval_izin_admin.dart';
+import 'attendance_data.dart';
+import 'laporan_absensi_admin.dart';
 void main() {
   runApp(const AttendanceApp());
 }
@@ -24,18 +27,22 @@ class AttendanceApp extends StatelessWidget {
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
 
+  static const Color primaryColor = Color(0xff6A020A);
+  static const Color secondaryColor = Color(0xff4c56af);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffFFF8F7),
+
       drawer: Drawer(
         child: Container(
-          color: const Color(0xff4c56af),
+          color: secondaryColor,
 
           child: ListView(
             padding: const EdgeInsets.all(20),
 
             children: [
-
               const SizedBox(height: 40),
 
               const CircleAvatar(
@@ -69,13 +76,16 @@ class AdminDashboard extends StatelessWidget {
 
               const SizedBox(height: 40),
 
+              /// DASHBOARD
               menuItem(
                 context,
                 Icons.dashboard,
                 "Dashboard",
                 const AdminDashboard(),
+                isActive: true,
               ),
 
+              /// DAFTAR ADMIN
               menuItem(
                 context,
                 Icons.admin_panel_settings,
@@ -83,34 +93,38 @@ class AdminDashboard extends StatelessWidget {
                 const DaftarAdmin(),
               ),
 
+              /// ATTENDANCE
               menuItem(
                 context,
                 Icons.access_time,
                 "Attendance",
-                const AdminDashboard(),
+                const AttendanceDataPage(),
               ),
 
+              /// MAPS
               menuItem(
-                context,
-                Icons.map,
-                "Maps",
-                const AdminDashboard(),
-              ),
+              context,
+              Icons.map,
+               "Monitoring Maps",
+             const MonitoringMapsPage(),
+                 ),
 
+              /// LEAVE REQUEST
               menuItem(
                 context,
                 Icons.assignment,
                 "Leave Requests",
-                const AdminDashboard(),
+                const LeaveApprovalPage(),
               ),
 
+              /// REPORTS
               menuItem(
-                context,
-                Icons.bar_chart,
-                "Reports",
-                const AdminDashboard(),
-              ),
-
+              context,
+              Icons.bar_chart,
+              "Reports",
+              const ReportsPage(),
+                ),
+              /// SETTINGS
               menuItem(
                 context,
                 Icons.settings,
@@ -136,7 +150,6 @@ class AdminDashboard extends StatelessWidget {
         ),
 
         actions: [
-
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.notifications),
@@ -154,7 +167,6 @@ class AdminDashboard extends StatelessWidget {
 
         child: Column(
           children: [
-
             /// Statistik Cards
             GridView.count(
               crossAxisCount: 2,
@@ -163,11 +175,9 @@ class AdminDashboard extends StatelessWidget {
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
 
-              physics:
-                  const NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
 
               children: const [
-
                 StatsCard(
                   title: "Total Karyawan",
                   value: "1,248",
@@ -200,7 +210,7 @@ class AdminDashboard extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// Chart Placeholder
+            /// Chart
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -208,8 +218,7 @@ class AdminDashboard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
 
-                borderRadius:
-                    BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20),
 
                 boxShadow: [
                   BoxShadow(
@@ -220,11 +229,9 @@ class AdminDashboard extends StatelessWidget {
               ),
 
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: const [
-
                   Text(
                     "Tren Absensi Mingguan",
                     style: TextStyle(
@@ -262,8 +269,7 @@ class AdminDashboard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
 
-                borderRadius:
-                    BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20),
 
                 boxShadow: [
                   BoxShadow(
@@ -274,11 +280,9 @@ class AdminDashboard extends StatelessWidget {
               ),
 
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-
                   const Text(
                     "Aktivitas Terbaru",
                     style: TextStyle(
@@ -315,15 +319,14 @@ class AdminDashboard extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// Table
+            /// TABLE
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
 
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius:
-                    BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20),
               ),
 
               child: SingleChildScrollView(
@@ -331,7 +334,6 @@ class AdminDashboard extends StatelessWidget {
 
                 child: DataTable(
                   columns: const [
-
                     DataColumn(
                       label: Text("Employee"),
                     ),
@@ -350,7 +352,6 @@ class AdminDashboard extends StatelessWidget {
                   ],
 
                   rows: const [
-
                     DataRow(cells: [
                       DataCell(Text("Joko Susanto")),
                       DataCell(Text("Operations")),
@@ -374,33 +375,50 @@ class AdminDashboard extends StatelessWidget {
     );
   }
 
+  /// MENU SIDEBAR
   static Widget menuItem(
     BuildContext context,
     IconData icon,
     String title,
-    Widget page,
-  ) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: Colors.white,
+    Widget page, {
+    bool isActive = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+
+      decoration: BoxDecoration(
+        color: isActive ? Colors.white : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
       ),
 
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white,
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: isActive
+              ? secondaryColor
+              : Colors.white,
         ),
-      ),
 
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => page,
+        title: Text(
+          title,
+          style: TextStyle(
+            color: isActive
+                ? secondaryColor
+                : Colors.white,
+
+            fontWeight: FontWeight.bold,
           ),
-        );
-      },
+        ),
+
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => page,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -414,8 +432,7 @@ class AdminDashboard extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
 
       leading: CircleAvatar(
-        backgroundColor:
-            color.withOpacity(0.2),
+        backgroundColor: color.withOpacity(0.2),
 
         child: const Icon(Icons.person),
       ),
@@ -451,8 +468,7 @@ class StatsCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
 
-        borderRadius:
-            BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20),
 
         boxShadow: [
           BoxShadow(
@@ -463,14 +479,11 @@ class StatsCard extends StatelessWidget {
       ),
 
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-
           CircleAvatar(
-            backgroundColor:
-                color.withOpacity(0.2),
+            backgroundColor: color.withOpacity(0.2),
 
             child: Icon(
               icon,
